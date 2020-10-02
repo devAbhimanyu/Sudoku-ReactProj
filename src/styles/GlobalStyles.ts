@@ -16,7 +16,7 @@ ${(props) => css`
         color: ${props.theme.colors.black};
         display: flex;
         font-family: sans-serif;
-        height: inherit;
+        height: 100%;
         justify-content: center;
         padding: 15px;
       }

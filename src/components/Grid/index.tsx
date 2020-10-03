@@ -1,7 +1,11 @@
 import React, { FC, Children } from 'react'
 import Block from './block'
 import { Container, Row } from './style'
+import { createGrid } from 'utils'
+
 const Grid: FC = () => {
+  const grid = createGrid()
+  console.log(grid)
   return (
     <Container data-cy="grid-container">
       {Children.toArray(

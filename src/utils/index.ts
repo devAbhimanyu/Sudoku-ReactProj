@@ -1,0 +1,6 @@
+export { default as checkGrid } from './check-grid'
+export { default as createGrid } from './create-grid'
+export { default as fillGrid } from './fillGrid'
+export { default as identifySquare } from './identify-square'
+export { default as shuffle } from './shuffle'
+export * from './is-in'

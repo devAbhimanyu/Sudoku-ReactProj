@@ -1,14 +1,19 @@
 import styled, { css } from 'styled-components'
 
-const Container = styled.div`
-  ${({ theme }) => css`
+interface PROPS {
+  active?: boolean
+}
+
+const Container = styled.div<PROPS>`
+  ${({ active, theme }) => css`
     align-items: center;
-    background-color: ${theme.colors.white};
+    background-color: ${active ? theme.colors.blue : theme.colors.white};
     border: solid 1px ${theme.colors.black};
     cursor: pointer;
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;
+    flex-basis: 0;
     font-size: 20px;
     font-weight: bold;
     height: auto;
@@ -21,9 +26,11 @@ const Container = styled.div`
       content: '';
       float: left;
     }
+
     &:hover {
       background-color: ${theme.colors.lightBlue};
     }
   `}
 `
+
 export default Container

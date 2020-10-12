@@ -15,6 +15,8 @@ export type INDEX = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 export type BLOCK_COORDS = [INDEX, INDEX]
 
 export interface GRIDSTATE {
-  grid?: GRID
+  challengeGrid?: GRID
   selectedBlock?: BLOCK_COORDS
+  solvedGrid?: GRID
+  workingGrid?: GRID
 }

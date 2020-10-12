@@ -12,13 +12,13 @@ const Block: FC<BlockProps> = ({ colIndex, rowIndex }) => {
   const dispatch = useDispatch()
   const gridState = useSelector<REDUCER, { value: N; isSelected: boolean }>(
     (state) => {
-      const { grid, selectedBlock } = state
+      const { workingGrid, selectedBlock } = state
       const isSelected = selectedBlock
         ? rowIndex === selectedBlock[0] && colIndex === selectedBlock[1]
         : false
       return {
         isSelected,
-        value: grid ? grid[rowIndex][colIndex] : 0,
+        value: workingGrid ? workingGrid[rowIndex][colIndex] : 0,
       }
     }
   )

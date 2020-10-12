@@ -3,21 +3,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import useMousetrap from 'react-hook-mousetrap'
 import Block from './block'
 import { Container, Row } from './style'
-import { BLOCK_COORDS, INDEX } from 'types'
-import { REDUCER, createGrid, selectBlock } from 'store/reducers'
+import { BLOCK_COORDS, INDEX, NUMBERS, N } from 'types'
+import { REDUCER, createGrid, selectBlock, fillBlock } from 'store/reducers'
 
 const Grid: FC = () => {
   const dispatch = useDispatch()
-  const { selectedBlock } = useSelector<
+  const { selectedBlock, selectedValue } = useSelector<
     REDUCER,
-    { selectedBlock?: BLOCK_COORDS }
-  >((state) => state)
+    {
+      selectedBlock?: BLOCK_COORDS
+      selectedValue: N
+    }
+  >(({ selectedBlock, workingGrid }) => ({
+    selectedBlock,
+    selectedValue:
+      workingGrid && selectedBlock
+        ? workingGrid[selectedBlock[0]][selectedBlock[1]]
+        : 0,
+  }))
   const initGrid = useCallback(() => {
     dispatch(createGrid())
   }, [dispatch])
   useEffect(() => {
     initGrid()
   }, [initGrid])
+
+  const fill = useCallback(
+    (n: NUMBERS) => {
+      if (selectedBlock && selectedValue === 0)
+        dispatch(fillBlock(n, selectedBlock))
+    },
+    [dispatch, selectedBlock, selectedValue]
+  )
 
   const onMouseUp = () => {
     if (selectedBlock && selectedBlock[0] > 0) {
@@ -43,7 +60,15 @@ const Grid: FC = () => {
       dispatch(selectBlock([row, (col + 1) as INDEX]))
     }
   }
-
+  useMousetrap('1', () => fill(1))
+  useMousetrap('2', () => fill(2))
+  useMousetrap('3', () => fill(3))
+  useMousetrap('4', () => fill(4))
+  useMousetrap('5', () => fill(5))
+  useMousetrap('6', () => fill(6))
+  useMousetrap('7', () => fill(7))
+  useMousetrap('8', () => fill(8))
+  useMousetrap('9', () => fill(9))
   useMousetrap('up', onMouseUp)
   useMousetrap('down', onMouseDown)
   useMousetrap('left', onMouseLeft)

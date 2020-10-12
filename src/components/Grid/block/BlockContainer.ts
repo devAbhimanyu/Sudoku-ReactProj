@@ -2,10 +2,11 @@ import styled, { css } from 'styled-components'
 
 interface PROPS {
   active?: boolean
+  userEntered?: boolean
 }
 
 const Container = styled.div<PROPS>`
-  ${({ active, theme }) => css`
+  ${({ active, userEntered, theme }) => css`
     align-items: center;
     background-color: ${active ? theme.colors.blue : theme.colors.white};
     border: solid 1px ${theme.colors.black};
@@ -15,7 +16,7 @@ const Container = styled.div<PROPS>`
     flex-shrink: 0;
     flex-basis: 0;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: ${userEntered ? 'light' : 'bold'};
     height: auto;
     justify-content: center;
     transition: ${theme.transition};
